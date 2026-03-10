@@ -1,19 +1,12 @@
 'use client'
 
-import { useRef } from 'react'
-import { useSearchParams } from 'next/navigation'
-import { ArrowUpIcon, CreditCard, DollarSign, Users } from 'lucide-react'
+import { CreditCard, DollarSign, Users } from 'lucide-react'
 import './styles/admin-tailwind.css'
 import { Button } from '../admin-ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../admin-ui/card'
-import { Label } from '../admin-ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../admin-ui/tabs'
 
 export function AdminDashboard() {
-  const portalRef = useRef<HTMLDivElement>(null)
-  const searchParams = useSearchParams()
-  const currentView = searchParams.get('view') || 'overview'
-
   return (
     <div className="adm:flex adm:flex-col">
       {/* Top Navbar */}
