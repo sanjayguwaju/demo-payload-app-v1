@@ -11,6 +11,10 @@ import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
 import localization from './i18n/localization'
 import { LoginPage } from './globals/LoginPage/config'
+import { TopBar } from './globals/TopBar/config'
+import { Navigation } from './globals/Navigation/config'
+import { Footer } from './globals/Footer/config'
+import { LandingPage } from './globals/LandingPage/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -70,7 +74,7 @@ export default buildConfig({
   }),
   collections: [Media, Users],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [LoginPage],
+  globals: [LoginPage, TopBar, Navigation, Footer, LandingPage],
   plugins,
   localization,
   secret: process.env.PAYLOAD_SECRET,

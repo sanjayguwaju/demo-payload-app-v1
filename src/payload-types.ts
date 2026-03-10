@@ -100,9 +100,17 @@ export interface Config {
     | ('en' | 'es' | 'de' | 'ja' | 'ar')[];
   globals: {
     'login-page': LoginPage;
+    'top-bar': TopBar;
+    navigation: Navigation;
+    footer: Footer;
+    'landing-page': LandingPage;
   };
   globalsSelect: {
     'login-page': LoginPageSelect<false> | LoginPageSelect<true>;
+    'top-bar': TopBarSelect<false> | TopBarSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
+    'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
   };
   locale: 'en' | 'es' | 'de' | 'ja' | 'ar';
   user: User;
@@ -543,6 +551,119 @@ export interface LoginPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "top-bar".
+ */
+export interface TopBar {
+  id: string;
+  announcement?: string | null;
+  links?:
+    | {
+        label: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  contactEmail?: string | null;
+  contactPhone?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: string;
+  logo?: (string | null) | Media;
+  logoText?: string | null;
+  items?:
+    | {
+        label: string;
+        url?: string | null;
+        description?: string | null;
+        children?:
+          | {
+              label: string;
+              url?: string | null;
+              description?: string | null;
+              children?:
+                | {
+                    label: string;
+                    url?: string | null;
+                    description?: string | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  ctaLabel?: string | null;
+  ctaUrl?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: string;
+  description?: string | null;
+  columns?:
+    | {
+        title: string;
+        links?:
+          | {
+              label: string;
+              url: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  copyright?: string | null;
+  socialLinks?:
+    | {
+        platform: 'twitter' | 'github' | 'linkedin' | 'facebook' | 'instagram' | 'youtube';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landing-page".
+ */
+export interface LandingPage {
+  id: string;
+  heroTitle: string;
+  heroSubtitle?: string | null;
+  heroCta?: string | null;
+  heroSecondaryCta?: string | null;
+  features?:
+    | {
+        title: string;
+        description?: string | null;
+        icon?: ('globe' | 'shield' | 'zap' | 'users' | 'code' | 'layers') | null;
+        id?: string | null;
+      }[]
+    | null;
+  featuresTitle?: string | null;
+  featuresSubtitle?: string | null;
+  ctaSectionTitle?: string | null;
+  ctaSectionDescription?: string | null;
+  ctaSectionButton?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "login-page_select".
  */
 export interface LoginPageSelect<T extends boolean = true> {
@@ -557,6 +678,119 @@ export interface LoginPageSelect<T extends boolean = true> {
   loginWithGoogle?: T;
   noAccount?: T;
   signUp?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "top-bar_select".
+ */
+export interface TopBarSelect<T extends boolean = true> {
+  announcement?: T;
+  links?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        id?: T;
+      };
+  contactEmail?: T;
+  contactPhone?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  logo?: T;
+  logoText?: T;
+  items?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        description?: T;
+        children?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              description?: T;
+              children?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
+  ctaLabel?: T;
+  ctaUrl?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  description?: T;
+  columns?:
+    | T
+    | {
+        title?: T;
+        links?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  copyright?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "landing-page_select".
+ */
+export interface LandingPageSelect<T extends boolean = true> {
+  heroTitle?: T;
+  heroSubtitle?: T;
+  heroCta?: T;
+  heroSecondaryCta?: T;
+  features?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  featuresTitle?: T;
+  featuresSubtitle?: T;
+  ctaSectionTitle?: T;
+  ctaSectionDescription?: T;
+  ctaSectionButton?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
