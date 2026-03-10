@@ -9,6 +9,8 @@ import { Users } from './collections/Users'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import localization from './i18n/localization'
+import { LoginPage } from './globals/LoginPage/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -68,8 +70,9 @@ export default buildConfig({
   }),
   collections: [Media, Users],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [],
+  globals: [LoginPage],
   plugins,
+  localization,
   secret: process.env.PAYLOAD_SECRET,
   sharp,
   typescript: {

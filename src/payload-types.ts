@@ -92,10 +92,19 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
-  fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
-  locale: null;
+  fallbackLocale:
+    | ('false' | 'none' | 'null')
+    | false
+    | null
+    | ('en' | 'es' | 'de' | 'ja' | 'ar')
+    | ('en' | 'es' | 'de' | 'ja' | 'ar')[];
+  globals: {
+    'login-page': LoginPage;
+  };
+  globalsSelect: {
+    'login-page': LoginPageSelect<false> | LoginPageSelect<true>;
+  };
+  locale: 'en' | 'es' | 'de' | 'ja' | 'ar';
   user: User;
   jobs: {
     tasks: unknown;
@@ -511,6 +520,46 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "login-page".
+ */
+export interface LoginPage {
+  id: string;
+  title: string;
+  description: string;
+  emailLabel: string;
+  emailPlaceholder: string;
+  passwordLabel: string;
+  passwordPlaceholder: string;
+  forgotPassword: string;
+  loginButton: string;
+  loginWithGoogle: string;
+  noAccount: string;
+  signUp: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "login-page_select".
+ */
+export interface LoginPageSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  emailLabel?: T;
+  emailPlaceholder?: T;
+  passwordLabel?: T;
+  passwordPlaceholder?: T;
+  forgotPassword?: T;
+  loginButton?: T;
+  loginWithGoogle?: T;
+  noAccount?: T;
+  signUp?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
